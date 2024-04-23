@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import openai
 
+import os
+from dotenv import load_dotenv
+
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Chat
 
 from django.utils import timezone
 
-openai_api_key = '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'
+load_dotenv()
+openai_api_key = os.environ.get('SECRET_KEY')
 openai.api_key = openai_api_key
 
 def ask_openai(message):
